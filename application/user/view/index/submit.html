@@ -1,0 +1,176 @@
+<div class="container m0 cjbg bod top70 " style="background-color:#fff; margin-bottom:30px" id="zt">
+
+
+    <div class="alert alert-success z16" role="alert"> <i class="fa fa-smile-o"></i>发布插件奖励5jq币,提供详细插件说明奖励<span class="z20">3倍以上</span>jq币.用户下载您所发布的资源您还会获得对应jq币 </div>
+    <div class="cjnr" id="cjinfo">
+        <div class="form-group">
+            <label for="exampleInputEmail1">插件标题</label>
+            <input type="text" class="form-control" id="bt" placeholder="标题" onblur="jqbt(this,'bt')">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">插件简介</label>
+            <input type="text" class="form-control" id="ms" placeholder="简介" onblur="jqbt(this,'ms')">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">插件关键字,请用逗号隔开。例如：轮播图，幻灯片，焦点图</label>
+            <input type="text" class="form-control" id="gjz" placeholder="关键字" onblur="jqbt(this,'gjz')">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">插件官网地址，没有可不填</label>
+            <input type="text" class="form-control" id="web" placeholder="官网地址如：www.jq22.com">
+        </div>
+        <div class="row" style="margin-bottom:20px">
+            <div class="col-lg-5">
+                <label for="exampleInputEmail1">ie兼容</label>
+                <select class="form-control" id="jr">
+                    <option>8</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                </select>
+            </div>
+            <div class="col-lg-6">
+                <label for="exampleInputEmail1">下载所需jq币(用户下载您将获得对应jq币)</label>
+
+                <input type="email" class="form-control" id="jf" value="0">
+
+            </div>
+
+        </div>
+        <div class="row" style="margin-bottom:20px">
+            <div class="row" style="padding-left:25px">
+                <label for="exampleInputEmail1">上传文件，格式为 zip, rar 文件最大不能超过15mb</label>
+            </div>
+            <div class="col-lg-8">
+                <input type="file" id="file3" name="plugin"/>
+            </div>
+
+        </div>
+
+        <div class="row" style="padding-left:10px">
+            <label for="exampleInputEmail1">插件使用方法介绍等信(息提供详细插件说明奖励3倍以上jq币)</label>
+
+            <textarea id='textarea1' style='height:200px; width:100%;'></textarea>
+
+
+
+        </div>
+        <div class="row" style="padding-right:25px; padding-top:10px; text-align:right">
+            <button type="button" id="myButton" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off">
+                <i class="fa fa-check"></i>  提 交
+            </button>
+
+            <!--引入wangEditor.css-->
+            <link rel="stylesheet" type="text/css" href="static/wangEditor/dist/css/wangEditor.min.css">
+            <!--引入jquery和wangEditor.js-->   <!--注意：javascript必须放在body最后，否则可能会出现问题-->
+            <script type="text/javascript" src="static/wangEditor/dist/js/lib/jquery-1.10.2.min.js"></script>
+            <script type="text/javascript" src="static/wangEditor/dist/js/wangEditor.min.js"></script>
+            <script type="text/javascript" src="static/js/ajaxfileupload.js"></script>
+            <!--这里引用jquery和wangEditor.js-->
+            <script type="text/javascript">
+                var editor = new wangEditor('textarea1');
+                // 普通的自定义菜单
+                editor.config.menus = [
+                    'insertcode',
+                    'bold',
+                    '|',     // '|' 是菜单组的分割线
+                    'orderlist',
+                    'unorderlist',
+                    'alignleft',
+                    'aligncenter',
+                    'alignright',
+                    '|',
+                    'undo'
+                ];
+                editor.create();
+            </script>
+            <script type="text/javascript" charset="utf-8">
+                $('#myButton').on('click', function () {
+                    var bt = $('#bt').val();
+                    var ms = $('#ms').val();
+                    var gjz = $('#gjz').val();
+                    var jr = $('#jr').val();
+                    var jf = $('#jf').val();
+                    var web = $('#web').val();
+
+                    if (bt.length > 5 ) {
+                        $('#cjinfo').css("display", "none");
+                        $('#cjts').css("display", "block");
+                        $('#cjts').addClass("dou2");
+                        var xq = $('#textarea1').val();
+                        var encodeHTML = encodeURIComponent(xq);
+
+                        $.ajaxFileUpload({
+                            type: 'post',
+                            url: 'uploadPlugin',
+                            secureuri: false,
+                            fileElementId: 'file3',
+                            dataType: 'text',
+                            data: { title: bt, describe: ms, keyword: gjz, compatible: jr, coin: jf, website: web, detail: encodeHTML },
+                            success: function (data) {
+                                if (data == "y"){
+                                    $('#cjts').css("display", "none");
+                                    $('#cjtsOk').css("display", "block");
+                                    $('#cjtsOk').addClass("dou2");
+                                    $('#bt').val() = "";
+                                    $('#ms').val();
+                                    $('#gjz').val();
+                                }
+                                else
+                                {
+                                    //$('#xx').innerHTML = "";
+                                    alert("上传失败！");
+                                }
+                            },
+                            error: function () { }
+                        });
+
+                    }
+
+                })
+
+                function HTMLEncode(html) {
+                    var temp = document.createElement("div"); (temp.textContent != null) ? (temp.textContent = html) : (temp.innerText = html);
+                    var output = temp.innerHTML;
+                    temp = null;
+                    return output;
+                }
+
+                function HTMLDecode(text) {
+                    var temp = document.createElement("div");
+                    temp.innerHTML = text;
+                    var output = temp.innerText || temp.textContent;
+                    temp = null;
+                    return output;
+                }
+
+
+                function jqbt(txt,id) {
+                    if (txt.value.length >= 60 || txt.value.length < 4) {
+                        $('#'+id).addClass("err");
+                    }
+                    else {
+                        $('#' + id).removeClass("err");
+                    }
+                }
+            </script>
+        </div>
+    </div>
+
+    <div class="cjnr" id="cjts" style="display:none">
+        <div  class="alert alert-info text-center z16" role="alert"><i class="fa fa-upload"></i> <p id="xx">插件上传中,请稍等！ </p><i class="fa fa-spinner fa-pulse"></i></div>
+    </div>
+    <div class="cjnr" id="cjtsOk" style="display:none">
+        <div class="alert alert-success text-center z16" role="alert">
+            <p> <i class="fa fa-check-circle"></i> 插件上传成功！审核通过后显示,感谢您对jQuery插件库的支持。 </p>
+            <p><a href="jquerySubmit"> 继续上传？</a> </p>
+        </div>
+    </div>
+
+
+</div>
+
+
+<!--end主体-->

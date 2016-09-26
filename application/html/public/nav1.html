@@ -1,0 +1,35 @@
+<!--nav-->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+      <div class="navbar-header">
+         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+         <a class="navbar-logo" href="http://www.jq22.com/"><img src="http://www.jq22.com/img/logo.png" height="100%" alt="jQuery插件,jQuery,jQuery特效.jQuery ui,jQuery 教程,css3,网页特效,JS特效"></a> </div>
+         <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav navbar-right">
+                  {volist name="nav.top_nav" id="item"}
+                <li ><a href="{$item.url}"><i class="{$item.style}"></i> &nbsp;{$key}</a></li>
+                  {/volist}
+                <li >
+                    {switch $is_login }
+                    {case value="1" }
+                    <div class="myhome">
+                        <a href="myhome"><img class="tou" src="static/img/tx/{$myPhoto}.png"/></a>
+                        <div class="myhome-z bh2">
+                            <a class="bh" href="myhome"><i class="fa fa-home"></i> 个人中心</a>
+                            <a class="bh" href="#" onclick="myout()"><i class="fa fa-sign-out"></i> 退出登录</a>
+                        </div>
+                    </div>
+                    {/case}
+                    {case value="0"}
+                        <a href="#" data-toggle="modal" data-target="#myModal" >
+                        <i class="fa fa-user"></i> &nbsp;注册/登录<span class="sr-only">(current)</span></a>
+                    {/case}
+                    {default /}
+                    {/switch}
+                </li>
+              </ul>
+        </div>
+      </div><!--/.nav-collapse -->
+  </div>
+</nav>
+<!--end nav-->

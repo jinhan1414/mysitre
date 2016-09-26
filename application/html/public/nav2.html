@@ -1,0 +1,20 @@
+<!--nav-->
+<div class="yn jz container-fluid nav-bg m0 visible-lg visible-md visible-sm" id="menu_wrap" >	
+  <div class="container m0" style="position:relative;">
+    {volist name='nav.guide_nav' id='item'}
+    <a class="nzz" href="{$item.url}" id="z{$i}"><span class="sort"><i class="{$item.style}"></i> &nbsp;{$key} <i class="fa fa-angle-down"></i></span></a>|
+    {/volist}
+  </div>
+  <div class="container-fluid">
+    <div id="n1" class="nav-zi ty" style="display: none;">
+      {volist name='nav.guide_nav' id='items' key='id'}
+      <ul id="nz{$id}" class="nn list-inline container m0" style="display: none;">
+        {volist name='$items.item' id='item'}
+        <li><a href="{$item.url}"><i class="fa {$item.style} ls"></i> {$item.name}</a> </li>
+        {/volist}
+      </ul>
+      {/volist}
+    </div>
+  </div>
+</div>
+<!--end nav-->

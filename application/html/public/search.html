@@ -1,0 +1,32 @@
+<div class="container-fluid banner banbk">
+	<div class="banseo">
+        
+    	<input type="text" class="bantxt" id="searchtxt" placeholder="搜索插件.." onkeyup="autoComplete.start(event)"><button class="btn banbutt" type="button" id="seobut" ><i class="fa fa-search"></i></button>
+        
+        <script type="text/javascript">
+			$("#seobut").click(function() {
+				var seo = $("#searchtxt").val();
+				if (seo.length > 1) {
+					window.location.href = "search?seo=" + seo;
+				}
+			});
+			$('#searchtxt').bind('keypress',
+			function(event) {
+			
+				if (event.keyCode == "13") {
+					var seo = $("#searchtxt").val();
+					if (seo.length > 1) {
+						window.location.href = "search?seo=" + seo;
+					}
+				}
+			});
+			
+			if (window.location.href == "http://jq22.com/") { window.location.href = "http://www.jq22.com/"; }
+		</script>
+    </div>
+
+	<iframe class="baniframe" sandbox="allow-scripts allow-same-origin" id="mh" src="http://example.com/static/js/a1.html"></iframe>
+	<script src="http://example.com/static/js/bb.js"></script>
+</div>
+
+

@@ -1,0 +1,33 @@
+
+<!--主体-->
+<div class="container m0 bod top70" id="zt">
+    <div class="container m0 bod">
+    <!--左-->
+	<div class="col-lg-9 col-md-12 col-sm-12">
+        {volist name='pls' id='pl'}
+            <div class="col-lg-4 col-md-3 col-sm-4">
+                <a href="page?id={$pl.id}" target="_blank"><img src="uploads/img/{$pl.img}.png"></a>
+                <div class="cover-info">
+                    <a href="page?id={$pl.id}" target="_blank"><h4>{$pl.title}</h4></a>
+                    <small>{$pl.describe}</small>
+                </div>
+                <div class="cover-fields">
+                    <i class="fa fa-list-ul"></i> &nbsp;{$pl.keyword}
+                </div>
+                <div class="cover-stat">
+                    <i class="fa fa-eye"></i><span class="f10"> &nbsp;{$pl.eye}</span>
+                    <i class="fa fa-heart"></i></i><span class="f10"> &nbsp;{$pl.heart}</span>
+                    <div class="cover-yh">
+                        <a href="{$pl.uid}" data-container="body" data-toggle="popover" data-placement="top" data-content="{$pl.username} ">
+                            <i class="fa fa-user-secret"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {/volist}
+        {$pls->render()}
+    </div>
+<!--end左-->
+{if condition="($Think.server.REQUEST_URI !='/')"}
+{include file='../../html/public/right' /}
+{/if}

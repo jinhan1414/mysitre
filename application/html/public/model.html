@@ -1,0 +1,55 @@
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+    <div class="modal-content2 tcc">
+             <div class="modal-header2 top20">
+                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                     ×
+                 </button>
+              <h4 class="modal-title" id="myModalLabel">6666
+              </h4>
+            </div>
+      <div class="modal-body tcck">
+            <div class="input-group input-group-lg parentCls">
+              <span class="input-group-addon" id="email"><i class="fa fa-envelope-o"></i></span>                
+              <input type="text" class="form-control inputElem" placeholder="请输入登录邮箱" aria-describedby="email" id="ema" style="width: 466px;">             
+            </div>
+            <div class="input-group input-group-lg top20">
+              <span class="input-group-addon" id="pwd"><i class="fa fa-unlock-alt" style="width:18px"></i></span>
+              <input type="password" class="form-control" placeholder="请输入登录密码" aria-describedby="pwd" id="pw">
+              <span class="input-group-btn tccBut">
+                <button class="btn btn-success" type="button" onclick="login()">登 录</button>
+              </span>
+            </div>
+      </div>
+
+
+          <div class="modal-footer2">
+                <div class="f"><a href="sendPwd">忘记密码?</a>
+                </div>
+                  <div class="r"><a href="register">注册新用户</a>
+                  </div>
+                  <div class="dr"></div>
+          </div>
+
+      <div class="d3f modal-body tcck2">          
+       <a href="#" onClick="tz()" class="qq"></a>
+       <a href="https://api.weibo.com:443/oauth2/authorize?client_id=3364913104&redirect_uri=http%3A%2F%2Fwww.jq22.com%2FWeiboReturn.aspx&response_type=code&display=default" class="sina"></a>
+       <a href="http://www.jq22.com/zfbReturn.aspx" class="zfb"></a>
+       <a href="#" onClick="gt()" class="git"></a>
+     </div>
+
+       <script>          
+         function tz() {
+           var urldz = "https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101135281&redirect_uri=http://www.jq22.com/QQReturn.aspx?tjurl=" + window.location.href;
+           window.location.href = urldz;
+         }
+         function gt() {
+           var urldz = "https://github.com/login/oauth/authorize?client_id=cf869185ea7d8fcab6df&state=jq22&redirect_uri=http://www.jq22.com/github.aspx?tjurl=" + window.location.href;
+           window.location.href = urldz;
+         }
+       </script>
+
+</div><!-- /.modal-content -->
+</div><!-- /.modal -->
+</div>

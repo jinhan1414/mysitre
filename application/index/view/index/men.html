@@ -1,0 +1,80 @@
+
+<!--主体-->
+
+<div class="container m0 bod top70" id="zt">
+    <div class="row">
+        <div class="col-md-6 t0b0 ">
+            <ol class="breadcrumb t0b0">
+                <li><a href="/">首页</a></li>
+                <li class="active">{$user.username}</li>
+            </ol>
+        </div>
+        <div class="col-md-6 t0b0 txtr">
+
+        </div>
+    </div>
+
+    <div class="row top10 mym">
+        <!--左-->
+
+        <div class="col-md-4 myleft">
+            <div class="myleft-n">
+                <h6>PROMULGATOR</h6>
+                <a href="#" data-toggle="modal" data-target="#exampleModal2">
+                    <img  id="tou" src="static/img/tx/{$user.myPhoto}.png" class="f imgr20 tou">
+                </a>
+                <div class="f imgf20">
+                    <h4>{$user.username}</h4>
+                    <i class="fa fa-map-marker"></i>火星
+                </div>
+
+                <div class="df"></div>
+            </div>
+            <div class="df"></div>
+            <div class="myleft-n">
+
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span class="badge">{$user.follow}</span>
+                        <i class="fa fa-heart"></i>&nbsp;关注他的人数
+                    </li>
+                </ul>
+
+            </div>
+            <div class="df"></div>
+        </div>
+
+        <!--end 左-->
+        <!--右-->
+        <div class="col-md-8 myright">
+            <div class="myright-n">
+                <div class="myNav row">
+                    <a href="#" id="myPlugin"><i class="fa fa-codepen"></i> ta发布的插件</a>
+                    <a href="#" id="myColletcPlugin"><i class="fa fa-heart"></i> ta收藏的插件</a>
+                </div>
+                <div class="row topx myMinh">
+
+                    <div class ="spjz">
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end 右-->
+    </div>
+    <!--    主体-->
+    <script>
+        $(document).ready(function(){
+            $("#myPlugin").click(function(){
+                $(".spjz").load("taPlugin/{$user.uid}");
+            });
+            $("#myColletcPlugin").click(function(){
+                $(".spjz").load("taCollectPlugin/{$user.uid}");
+            });
+        });
+    </script>
+    <!--    end主体-->
+

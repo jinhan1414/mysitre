@@ -1,0 +1,4 @@
+handle:
+ - rewrite: if(!is_dir() && !is_file() &&   path~"^(.*)$") goto "public/index.php/$1"
+ - directoryindex: "public/index.php"
+  

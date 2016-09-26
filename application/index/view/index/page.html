@@ -1,0 +1,74 @@
+
+<!--主体-->
+<div class="container m0 bod top70" id="zt">
+    <!--左-->
+    <div class="col-lg-9 col-md-12 col-sm-12">
+        <div class="project">
+            <div class="project-header">
+                {volist name='pages' id='page'}
+                <h1>{$page.title}</h1>
+                <p>所属分类：{$page.keyword}</p>
+                <div class="row pd10">
+                    <div class="f">
+                        <span><i class="fa fa-eye"></i>  &nbsp;{$page.eye} </span>
+                        <span><i class="fa fa-heart"></i>  &nbsp;{$page.heart} </span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-content">
+                <img src="uploads/img/{$page.img}.png" class="thumbile" alt="{$page.img}">
+                <img src="static/img/{$page.compatible}.png" class="thumbile" alt="ie兼容{$page.compatible}"/>
+                <div class="thumbile">
+                    <a href="http://www.jq22.com/yanshi{$page.id}" target="_blank" class="btn btn-success"><i
+                            class="fa fa-eye"></i> &nbsp;查看演示</a>
+                    <a href="" target="_blank" class="btn btn-info" style="display:none"><i class="fa fa-globe"></i>
+                        &nbsp;website</a>
+                    <a href="javascript:void(0)" onclick="mydown()" class="btn btn btn-danger" data-toggle="modal"
+                       data-target="#mydown"><i class="fa fa-cloud-download"></i> &nbsp;立即下载</a>
+                </div>
+
+                <div class="alert cjms" role="alert">插件描述：{$page.describe}</div>
+
+<!--                <ul class="x-top" style="padding-left:0px">
+                    <div class="fy f zhs"><span class="jg35">PREVIOUS:</span></div>
+                    <div class="fy f txtRight zhs"><span class="jg352">NEXT:</span></div>
+                    <div class="fy f"><a class='PREVIOUS' href='http://www.jq22.com/jquery-info8881'> jQuery表格隔行换色 </a> </div>
+                    <div class="fy f txtRight"><a class='NEXT' href='http://www.jq22.com/jquery-info8867'> jquery 拖动复制 </a> </div>
+                    <div class="dr"></div>
+                    <div class="df"></div>
+                </ul>-->
+                {/volist}
+            </div>
+                <div class="in100">
+                    <h4 style="padding-left:10px">相关插件-水平导航,其他导航</h4>
+                    {volist name="xgcjs" id="xgcj"}
+                    <div class="col-lg-4 col-md-3 col-sm-4">
+                        <a href="page?id={$xgcj.id}"><img src="uploads/img/{$xgcj.img}.png"></a>
+                        <div class="cover-info">
+                            <a href="page?id={$xgcj.id}"><h4>{$xgcj.title}</h4></a>
+                            <small>{$xgcj.describe}</small>
+                        </div>
+                        <div class="cover-fields">
+                            <i class="fa fa-list-ul"></i> &nbsp;
+                            {$xgcj.keyword}
+                        </div>
+                        <div class="cover-stat">
+                            <i class="fa fa-eye"></i><span class="f10"> &nbsp;{$xgcj.eye}</span>
+                            <i class="fa fa-heart"></i></i>
+                            <span class="f10"> &nbsp;{$xgcj.heart}</span>
+
+                            <div class="cover-yh">
+                                <a href="/{$xgcj.uid}" data-container="body" data-toggle="popover"
+                                   data-placement="top" data-content="{$xgcj.username}">
+                                    <i class="fa fa-user-secret"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {/volist}
+                </div>
+                    <div class="df"></div>
+        </div>
+    </div>
+    <!--end左-->
+    {include file='../../html/public/right2' /}

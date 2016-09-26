@@ -1,0 +1,11 @@
+{include file='../../html/public/header' /}
+{include file='../../html/public/nav1' /}
+{include file='../../html/public/model' /}
+{if condition="($Think.server.REQUEST_URI =='/')"}
+{include file='../../html/public/search' /}
+{/if}
+{include file='../../html/public/nav2' /}
+{__CONTENT__}
+{if condition="($Think.server.REQUEST_URI !='/register')"}
+{include file='../../html/public/footer' /}
+{/if}

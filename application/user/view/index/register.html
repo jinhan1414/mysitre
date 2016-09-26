@@ -1,0 +1,224 @@
+<div class="login">
+    <div class="loingnr">
+        <div class="modal-body">
+
+            <div class="input-group input-group-lg" style="position:relative;">
+                <span class="input-group-addon" id="sizing-s1"><i class="fa fa-envelope-o" style="width:18px"></i></span>
+
+                <input id="myemail" class="form-control" placeholder="请输入登录邮箱" aria-describedby="sizing-addon1" type="text" name="name" size="30" onblur="emailgs(this)" >
+                <div class="on_changes" style="position: absolute; left:51px; top: 49px">
+                    <li email="">请选择邮箱类型</li>
+                    <li email=""></li>
+                    <li email="@163.com"></li>
+                    <li email="@126.com"></li>
+                    <li email="@qq.com"></li>
+                    <li email="@sina.com"></li>
+                    <li email="@hotmail.com"></li>
+                    <li email="@gmail.com"></li>
+                    <li email="@yahoo.com"></li>
+                </div>
+
+                <span class="input-group-btn tccBut1">
+                    <input  type="button"  id="bt1" class="btn btn-success " style=" width:130px; font-size:15px;line-height:28px" value="获取验证码" />
+                </span>
+            </div>
+            <div class="alert alert-danger errts top10" id="empdts" role="alert" style="display:none"><i class="fa fa-info-circle"></i> <span id="erremailts"> 此邮箱已经被注册过</span></div>
+
+            <div class="input-group input-group-lg top20">
+                <span class="input-group-addon" id="sizing-s2"><i class="fa fa-user-secret" style="width:18px"></i></span>
+                <input type="text" class="form-control" id="myhm" placeholder="用户名" aria-describedby="sizing-addon1" onblur="yhmok(this)">
+            </div>
+            <div class="alert alert-danger errts top10" id="yhts" role="alert" style="display:none"><i class="fa fa-info-circle"></i> <span id="erreyhmts"> 此用户名已经被使用过</span></div>
+
+            <div class="input-group input-group-lg top20">
+                <span class="input-group-addon" id="sizing-s5"><i class="fa fa-qrcode" style="width:18px"></i></span>
+                <input type="text" class="form-control" id="yzm" placeholder="请输入验证码" aria-describedby="sizing-addon1" >
+            </div>
+            <div class="input-group input-group-lg top20">
+                <span class="input-group-addon" id="sizing-s3"><i class="fa fa-lock" style="width:18px"></i></span>
+                <input type="password" class="form-control" id="pwd1" placeholder="请输入登录密码" aria-describedby="sizing-addon1" >
+            </div>
+            <div class="input-group input-group-lg top20">
+                <span class="input-group-addon" id="sizing-s4"><i class="fa fa-key" style="width:18px"></i></span>
+                <input type="password" class="form-control" id="pwd2" placeholder="确认登录密码" aria-describedby="sizing-addon1" onblur="yzm()">
+                <span class="input-group-btn tccBut">
+
+                  <input type="button" class="btn btn-success" style="width:130px" onclick="tj()" value="注册">
+              </span>
+            </div>
+            <p ><input type="checkbox" class="check" checked>同意<a class="modalLink" href="#" class="btn btn-default" data-toggle="tooltip" data-html="true" data-placement="top" title="注册声明
+		一、用户注册、登陆，视为接受本协议的约束。
+		二、用户承诺遵守国家的法律法规及部门规章
+		三、用户承诺遵守“jQuery插件库”的知识产权政策.
+		四、站内插件用于行业交流、学习。
+		五、用户侵犯第三人的知识产权，由该用户承担全部法律责任。
+
+        版权声明
+		jQuery插件库（www.jq22.com）站内所有涉及插件及代码由会员上传而来，jQuery插件库不拥有此类插件及代码的版权
+		jQuery插件库作为jQuery插件网络服务提供者，对非法转载，盗版行为的发生不具备充分的监控能力。但是当版权拥有者提出侵权指控并出示充分的版权证明材料时，jQuery插件库负有移除盗版和非法转载作品以及停止继续传播的义务。jQuery插件库在满足前款条件下采取移除等相应措施后不为此向原发布人承担违约责任或其他法律责任，包括不承担因侵权指控不成立而给原发布人带来损害的赔偿责任。
+		如果版权拥有者发现自己作品被侵权，请及时向jQuery插件库提出权利通知，并将姓名、电话、身份证明、权属证明、具体链接（URL）及详细侵权情况描述发往版权举报专用通道，jQuery插件库在收到相关举报文件后，在3个工作日内移除相关涉嫌侵权的内容
+		QQ：67971087（周一到周五，9：30-18:00）">《注册声明》《版权声明》</a></p>
+
+
+
+        </div>
+    </div>
+
+</div>
+
+
+<script type="text/javascript" charset="utf-8">
+
+    var wait = 60;
+    var id = 0;
+    var ea = 0;
+    var ea2 = 0;
+
+    //邮箱验证
+    var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+    function emailgs(txt) {
+        if (!myreg.test(txt.value) || txt.value.length >= 30) {
+            $("#myemail").addClass("err");
+            $("#myemail").attr('placeholder', '邮箱格式错误')
+        }
+        else {
+            //在线验证是否已经注册
+            $("#myemail").removeClass("err");
+        }
+    }
+    //验证用户名
+    function yhmok(txt) {
+        if (txt.value.length >= 30 || txt.value.length<2) {
+            $("#myhm").addClass("err");
+            $("#myhm").attr('placeholder', '用户名错误')
+        }
+        else {
+            $("#myhm").removeClass("err");
+            var emyz = $.ajax({
+                type: 'post',
+                url: 'regyhm',
+                data: { yhm: txt.value },
+                cache: false,
+                dataType: 'text',
+                success: function (data) {
+                    if (data == "y") {
+                        $("#yhts").css("display", "none");
+                    } else {
+                        $("#yhts").css("display", "block");
+                    }
+                },
+                error: function () { }
+            });
+        }
+    }
+
+
+    document.getElementById("bt1").onclick = function () { time(this); }
+    function time(o) {
+        if (wait == 60) {
+            var myemail = $("#myemail").val();
+            if (!myreg.test(myemail) || myemail.length >= 30) {
+                $("#myemail").addClass("err");
+                $("#myemail").attr('placeholder', '邮箱格式错误');
+                ea = 1;
+            }
+            else
+            {
+                o.setAttribute("disabled", true);
+                o.value = "正在发送验证码";
+                var yz = $.ajax({
+					//timeout : 5000, //超时时间设置，单位毫秒
+                    type: 'post',
+                    url: 'register',
+                    data: { em: myemail },
+                    cache: false,
+                    dataType: 'text',
+					//async :false,
+                    success: function (data) {
+                        if (data == "y") {
+                            $("#empdts").css("display", "none");
+                            id = setInterval(send_time,1000);
+                        } else {
+                            $("#empdts").css("display", "block");
+                            o.removeAttribute("disabled");
+                            o.value = "获取验证码";
+                        }
+                    },
+                    error: function () {},
+                });
+            }
+        }
+
+    }
+    function send_time() {
+        var  obj = document.getElementById("bt1");
+        obj.value = "已发送(重发" + wait + ")";
+        wait--;
+        if(wait == 0){
+            obj.removeAttribute("disabled");
+            obj.value = "获取验证码";
+            wait = 60;
+            clearInterval(id);
+        }
+    }
+
+
+    //密码
+    function yzm() {
+        var mpwd1 = $("#pwd1").val();
+        var mpwd2 = $("#pwd2").val();
+        if (mpwd1 != mpwd2) {
+            $("#pwd2").addClass("err");
+            $("#pwd2").attr('placeholder', '两次输入的密码不一直')
+        } else {
+            $("#pwd2").removeClass("err");
+        }
+
+    }
+
+
+    function tj() {
+        var myemail = $("#myemail").val();
+        var myhm = $("#myhm").val();
+        var myzm = $("#yzm").val();
+
+        var mpwd1 = $("#pwd1").val();
+        var mpwd2 = $("#pwd2").val();
+
+        if (!myreg.test(myemail) || myemail.length >= 30) {
+            $("#myemail").addClass("err");
+            $("#myemail").attr('placeholder', '邮箱格式错误')
+        }
+        else if (myhm.length >= 30 || myhm.length < 2)
+        {
+            $("#myhm").addClass("err");
+            $("#myhm").attr('placeholder', '用户名错误')
+        }
+        else if (mpwd1 != mpwd2 || mpwd2.length < 5) {
+            $("#pwd2").addClass("err");
+            $("#pwd2").attr('placeholder', '密码错误')
+        }
+        else {
+            $.post("regok", { Action: "post", em: myemail, username: myhm, code: myzm, pwd: mpwd1, pwd2: mpwd2 }
+                    , function (data) {
+                        if (data == "y") {
+                            window.location.href = "myhome";
+                        }else {
+                            alert("注册失败");
+                        }
+
+                    }, "text");
+
+
+        }
+
+
+
+
+
+    }
+
+</script>
+
+</body>
+</html>
