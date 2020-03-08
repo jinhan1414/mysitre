@@ -18,7 +18,10 @@ RUN apt-get -qq update && \
 				lbzip2 \
 				curl 	\
 				wget	\
-				xz-utils
+				xz-utils \
+				vim \
+				libc6-dev-i386 \
+				g++-multilib
 
 RUN mkdir -p /v8build
 WORKDIR /v8build
