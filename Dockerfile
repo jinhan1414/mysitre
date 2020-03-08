@@ -28,6 +28,7 @@ WORKDIR /v8build
 
 # DEPOT TOOLS install
 RUN git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+RUN git clone https://github.com/eclipsesource/J2V8.git
 ENV PATH /v8build/depot_tools:"$PATH"
 RUN echo $PATH
 
