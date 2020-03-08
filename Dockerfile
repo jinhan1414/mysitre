@@ -49,9 +49,5 @@ RUN echo "target_os= ['${target_os}']">>.gclient
 RUN gclient sync
 
 WORKDIR /v8build/v8
-RUN echo y | \
-	if [ "x${target_os}" = "xandroid" ]; then \
-		./build/install-build-deps-android.sh ; \
-	else \
-		./build/install-build-deps.sh ; fi
+
 
