@@ -4,7 +4,7 @@ FROM $sys_image
 
 # default values
 ARG vendor=debian
-ARG target_os=linux
+ARG target_os=android
 ARG target_cpu=x64
 
 # Update depedency of V8
@@ -50,15 +50,13 @@ RUN gclient sync
 
 WORKDIR /v8build/v8
 
-RUN echo 5 | echo 6 | echo y | ./build/install-build-deps.sh
+RUN echo 2| echo 2 | echo 8|echo y | \
+	if [ "x${target_os}" = "xandroid" ]; then \
+		./build/install-build-deps-android.sh ; \
+	else \
+		./build/install-build-deps.sh ; fi
 RUN git pull && gclient sync
-RUN ./tools/dev/v8gen.py x64.release -vv
-RUN rm out.gn/x64.release/args.gn
-RUN cd out.gn/x64.release
-RUN wget https://raw.githubusercontent.com/eclipsesource/J2V8/master/v8/android-x64/args.gn
-RUN cd ../../
-RUN ninja -C out.gn/x64.release -t clean
-RUN ninja -C out.gn/x64.release v8_monolith
+
 
 
 
