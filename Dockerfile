@@ -7,6 +7,8 @@ ARG vendor=debian
 ARG target_os=android
 ARG target_cpu=x64
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 # Update depedency of V8
 RUN apt-get -qq update && \
 	DEBIAN_FRONTEND=noninteractive apt-get -qq install -y \
@@ -49,6 +51,13 @@ RUN echo "target_os= ['${target_os}']">>.gclient
 RUN gclient sync
 
 WORKDIR /v8build/v8
+
+RUN echo y | \
+	if [ "x${target_os}" = "xandroid" ]; then \
+		./build/install-build-deps-android.sh ; \
+	else \
+		./build/install-build-deps.sh ; fi
+RUN git pull && gclient sync
 
 
 
