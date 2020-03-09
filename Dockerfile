@@ -50,7 +50,7 @@ RUN gclient sync
 
 WORKDIR /v8build/v8
 
-RUN echo y | ./build/install-build-deps.sh
+RUN echo 5 | echo 6 | echo y | ./build/install-build-deps.sh
 RUN git pull && gclient sync
 RUN ./tools/dev/v8gen.py x64.release -vv
 RUN rm out.gn/x64.release/args.gn
