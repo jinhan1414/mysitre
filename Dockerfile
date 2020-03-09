@@ -50,4 +50,15 @@ RUN gclient sync
 
 WORKDIR /v8build/v8
 
+RUN ./build/install-build-deps.sh
+RUN git pull && gclient sync
+RUN ./tools/dev/v8gen.py x64.release -vv
+RUN rm out.gn/x64.release/args.gn
+RUN cd out.gn/x64.release
+RUN wget https://raw.githubusercontent.com/eclipsesource/J2V8/master/v8/android-x64/args.gn
+RUN cd ../../
+RUN ninja -C out.gn/x64.release -t clean
+RUN ninja -C out.gn/x64.release v8_monolith
+
+
 
