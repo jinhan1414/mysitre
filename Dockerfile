@@ -50,12 +50,6 @@ RUN gclient sync
 
 WORKDIR /v8build/v8
 
-RUN echo 2| echo 2 | echo 8|echo y | \
-	if [ "x${target_os}" = "xandroid" ]; then \
-		./build/install-build-deps-android.sh ; \
-	else \
-		./build/install-build-deps.sh ; fi
-RUN git pull && gclient sync
 
 
 
